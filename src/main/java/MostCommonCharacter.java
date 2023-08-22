@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class MostCommonCharacter {
     /**
      * Find the most common character in str.
@@ -8,6 +8,11 @@ public class MostCommonCharacter {
      * @return the most common character within str.
      */
     public char recurringChar(String str) {
-        return ' ';
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            map.merge(c, 1, Integer::sum);
+        }
+        Map.Entry<Character, Integer> entry = Collections.max(map.entrySet(), Map.Entry.comparingByValue());
+        return entry.getKey();
     }
 }
